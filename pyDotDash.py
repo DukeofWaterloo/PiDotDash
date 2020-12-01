@@ -2,7 +2,8 @@ alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
 
 morse = ['.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..',' ']
 
-def morseToAlphabet(message): #WORK ON THIS LATERRR
+#morseToAlphabet takes in a morse encoded message and returns the decrypted english message
+def morseToAlphabet(message): 
     translation = "";
     message = message.split("   ")
     
@@ -16,7 +17,7 @@ def morseToAlphabet(message): #WORK ON THIS LATERRR
 
     print(translation)
 
-
+#alphabetToMorse takes in a english decrypted message and returns an encrypted morse message
 def alphabetToMorse(message):
     translation = " "
     message = message.lower().split()
@@ -32,6 +33,7 @@ def alphabetToMorse(message):
 
     print(translation)
 
+#printOut displays an alphabet : morse chart to help out users
 def printOut():
     block = ("------------------------")
     print(block)
@@ -47,3 +49,7 @@ printOut()
 morseToAlphabet(mmsg)
 print("- - - - - - - - -")
 alphabetToMorse(msg)
+
+
+
+
