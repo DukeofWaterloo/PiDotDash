@@ -5,6 +5,9 @@ alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
 
 morse = ['.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..','.----','..---','...--','....-','.....','-....','--...','---..','----.','-----','--..--','.-.-.-','..--..','-.-.-.','---...','-..-.','-....-','.----.','-...-','-.--.','-.--.-','-...-','.-.-.','-..-','.--.-.']
 
+dot = './audio/dot.mp3'
+dash = './audio/dash.mp3'
+
 #morseToAlphabet takes in a morse encoded message and returns the decrypted english message
 def morseToAlphabet(message): 
     translation = "";
@@ -40,24 +43,27 @@ def alphabetToMorse(message):
 def alphabetToMorseBeep(message):
     for i in range(len(message)):
         if (message[i] == "."):
-            ps("dot.mp3")
+            ps(dot)
         elif (message[i] == "-"):
-            ps("dash.mp3")
+            ps(dash)
         else:
             time.sleep(0.2)
+    print("")
 
 #alphabetToMorseBeepSpecial takes in an encrypted morse messsage and both types as well as beeps it out to the user
 def alphabetToMorseBeepSpecial(message):
     for i in range(len(message)):
         if (message[i] == "."):
             print(".", end='', flush=True)
-            ps("dot.mp3")
+            ps(dot)
         elif (message[i] == "-"):
             print("-", end='', flush=True)
-            ps("dash.mp3")
+            ps(dash)
         else:
             print(" ", end='', flush=True)
             time.sleep(0.2)
+    print("")
+
 #printOut displays an alphabet : morse chart to help out users
 def printOut():
     block = ("------------------------")
@@ -81,7 +87,7 @@ def menu():
         if (choice == "C"):
             printOut()
 
-        elif (choice == "M"):
+        elif (choice == "M"): #INPUTTING MORSE OUTPUTTING ENGLISH
             print("How would you like to enter your message?\n")
             print("1) [K]eyboard")
             inputMethod = input("").upper()
@@ -102,9 +108,10 @@ def menu():
                 if (inputMethod == "K"):
                         inputValid = 1
 
-            print ("How would you like to output your message?\n") #For multiple options add the sum of numbers a la chmod ;)
+            print ("How would you like to output your message?\n") 
+            #print("(To combine options take the sum of their numbers, ie. [C]onsole + [S]peech = 3)")
             print("1) [C]onsole")
-            print("2) [B]eeps")
+            #print("2) [S]peech")
             outputMethod = input("").upper()
             outputValid = 0
 
@@ -157,7 +164,7 @@ def menu():
 
 
 
-        elif (choice == "E"):
+        elif (choice == "E"): #INPUTTING ENGLISH OUTPUTTING MORSE
             print("How would you like to enter your message?\n")
             print("1) [K]eyboard")
             inputMethod = input("").upper()
@@ -178,8 +185,8 @@ def menu():
                if (inputMethod == "K"):
                    inputValid = 1
 
-            print("How would you like to output your message?\n") #For multiple options add the sum of numbers a la chmod ;)
-            print("(To combine options take the sum of their numbers, ie. Console + Beeps = 3)")
+            print("How would you like to output your message?\n") 
+            print("(To combine options take the sum of their numbers, ie. [C]onsole + [B]eeps = 3)")
             print("1) [C]onsole")
             print("2) [B]eeps")
             outputMethod = input("").upper()
@@ -249,14 +256,10 @@ def menu():
 
 
 #Sample Messages for Testing Purposes
-msg = "HELLO THERE!"
-mmsg = ".... . .-.. .-.. ---   - .... . .-. ."
+#msg = "HELLO THERE!"
+#mmsg = ".... . .-.. .-.. ---   - .... . .-. ."
 
-#printOut()
-#morseToAlphabet(mmsg)
-#print("- - - - - - - - -")
-#alphabetToMorse(msg)
-ps('dot.mp3')
-ps('dash.mp3')
+ps(dot)
+ps(dash)
 menu()
 
