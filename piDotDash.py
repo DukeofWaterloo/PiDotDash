@@ -40,12 +40,11 @@ def printOut():
         print(alphabet[i] + " : " + morse[i])
     print(block)
 
-
 def menu():
     run = 1
     choice = ""
     block = ("------------------------")
-    print("Hello there and welcome to the pyDotDash Morse/English translator!\n")
+    print("Hello there and welcome to the PiDotDash Morse/English translator!\n")
     while(run==1): 
         print("Would you like to...") 
         print("See an Alphabet : Morse [C]hart")
@@ -61,10 +60,42 @@ def menu():
             print("How would you like to enter your message?\n")
             print("1) [K]eyboard")
             inputMethod = input("").upper()
+            inputValid = 0
+
+            if (inputMethod == "1"):
+                inputMethod = "K"
+
+            if (inputMethod == "K"):
+                inputValid = 1
+
+            while (inputValid == 0):
+                print("Invalid entry detected, please enter a valid option!")
+                inputMethod = input("").upper()
+                if (inputMethod == "1"):
+                    inputMethod = "K"
+
+                if (inputMethod == "K"):
+                        inputValid = 1
 
             print ("How would you like to output your message?\n")
             print("1) [C]onsole")
             outputMethod = input("").upper()
+            outputValid = 0
+
+            if (outputMethod == "1"):
+                outputMethod = "C"
+
+            if (outputMethod == "C"):
+                outputValid= 1
+
+            while (outputValid == 0):
+                print("Invalid entry detected, please enter a valid option!")
+                outputMethod = input("").upper()
+                if (outputMethod == "1"):
+                    outputMethod = "C"
+
+                if (outputMethod == "C"):
+                    outputValid = 1
 
             if (inputMethod == "K"):
                 print("Please enter your message: (Format is one space between characters and three spaces between words)")
@@ -75,14 +106,14 @@ def menu():
                     print("Your translated message is: ")
                     print(englishMessage)
 
-            print("Would you like to run pyDotDash again? ([Y]/[N])")
+            print("Would you like to run PiDotDash again? ([Y]/[N])")
             repeat = input("").upper()
 
             if (repeat == "Y"):
                 print("")
 
             elif (repeat =="N"):
-                print("EXITING PROGRAM")
+                print("Thank you for using PiDotDash!\nEXITING PROGRAM")
                 run = 0
             else:
                 print("INVALID ENTRY DETECTED, EXITING PROGRAM")
@@ -95,10 +126,42 @@ def menu():
             print("How would you like to enter your message?\n")
             print("1) [K]eyboard")
             inputMethod = input("").upper()
+            inputValid = 0
+
+            if (inputMethod == "1"):
+                inputMethod = "K"
+
+            if (inputMethod == "K"):
+                inputValid = 1
+
+            while (inputValid == 0):
+               print("Invalid entry detected, please enter a valid option!")
+               inputMethod = input("").upper()
+               if (inputMethod == "1"):
+                   inputMethod = "K"
+
+               if (inputMethod == "K"):
+                   inputValid = 1
 
             print("How would you like to output your message?\n")
             print("1) [C]onsole")
             outputMethod = input("").upper()
+            outputValid = 0
+
+            if (outputMethod == "1"):
+                outputMethod = "C"
+
+            if (outputMethod == "C"):
+                outputValid = 1
+
+            while (outputValid == 0):
+               print("Invalid entry detected, please enter a valid option!")
+               outputMethod = input("").upper()
+               if (outputMethod == "1"):
+                   outputMethod = "C"
+
+               if (outputMethod == "C"):
+                   outputValid = 1
 
             if (inputMethod == "K"):
                 print("Please enter your message: ")
@@ -109,14 +172,14 @@ def menu():
                     print("Your translated message is: ")
                     print(morseMessage)
 
-            print("Would you like to run pyDotDash again? ([Y]/[N])")
+            print("Would you like to run PiDotDash again? ([Y]/[N])")
             repeat = input("").upper()
 
             if (repeat == "Y"):
                 print("")
 
             elif (repeat =="N"):
-                print("EXITING PROGRAM")
+                print("Thank you for using PiDotDash!\nEXITING PROGRAM")
                 run = 0
             else:
                 print("INVALID ENTRY DETECTED, EXITING PROGRAM")
