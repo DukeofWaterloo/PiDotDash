@@ -6,12 +6,12 @@ As of right now the current I/O options are as follows:
 |  | Morse | English |
 | --- | --- | --- |
 | Input | Keyboard | Keyboard |
-| Output | Console <br> Text to Speech (Beep) | Console | 
+| Output | Console <br> Text to Speech (Beep) | Console <br> Text to Speech | 
 
 In addition to the above methods of I/O, I am planning to add the following too!
 
 |  | English | Morse |
 | --- | --- | --- |
 | Input | Speech to Text <br> From a File | Physical Button <br> Speech (Beep) to Text ? |
-| Output | Text to Speech | Blinking LED | 
+| Output | | Blinking LED | 
 
