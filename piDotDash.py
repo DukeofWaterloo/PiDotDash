@@ -1,4 +1,5 @@
 from playsound import playsound as ps
+import pyttsx3
 import time
 
 alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','0',',','.','?',';',':','/','-',"'",'"','(',')','=','+','*','@']
@@ -22,6 +23,16 @@ def morseToAlphabet(message):
         translation += " "
 
     return translation.lstrip(" ")
+
+#morseToAlphabetSpecial takes in a decrypted english message and prints as well as speaks it out to the user
+def morseToAlphabetSpecial(message):
+    word = message.split()
+    for i in range(len(word)):
+        print (word[i], end=' ', flush=True)
+        radio.say(word[i])
+        radio.runAndWait()
+    print()
+
 
 #alphabetToMorse takes in a english decrypted message and returns an encrypted morse message
 def alphabetToMorse(message):
@@ -71,7 +82,7 @@ def printOut():
         print(alphabet[i] + " : " + morse[i])
     print(block)
 
-def menu():
+def menu(): #menu displays the user menu and hosts the programs logical decisions
     run = 1
     choice = ""
     block = ("------------------------")
@@ -109,9 +120,9 @@ def menu():
                         inputValid = 1
 
             print ("How would you like to output your message?\n") 
-            #print("(To combine options take the sum of their numbers, ie. [C]onsole + [S]peech = 3)")
+            print("(To combine options take the sum of their numbers, ie. [C]onsole + [S]peech = 3)")
             print("1) [C]onsole")
-            #print("2) [S]peech")
+            print("2) [S]peech")
             outputMethod = input("").upper()
             outputValid = 0
 
@@ -119,9 +130,9 @@ def menu():
                 outputMethod = "C"
             
             if (outputMethod == "2"):
-                outputMethod = "B"
+                outputMethod = "S"
 
-            if (outputMethod == "C" or outputMethod == "B"):
+            if (outputMethod == "C" or outputMethod == "B") or outputMethod == "3":
                 outputValid= 1
 
             while (outputValid == 0):
@@ -132,7 +143,7 @@ def menu():
                 if (outputMethod == "2"):
                     ouputMethod = "B"
 
-                if (outputMethod == "C" or outputMethod == "B"):
+                if (outputMethod == "C" or outputMethod == "B" or outputMethod == "3"):
                     outputValid = 1
 
             if (inputMethod == "K"):
@@ -144,8 +155,13 @@ def menu():
                 print("Your translated message is: ")
                 print(englishMessage)
 
-            elif (outMethod == "B"):
+            elif (outputMethod == "S"):
                 print("Your translated message is: ")
+                radio.say(englishMessage)
+            
+            elif (outputMethod == "3"):
+                print("Your translated message is: ")
+                morseToAlphabetSpecial(englishMessage)
 
 
             print("Would you like to run PiDotDash again? ([Y]/[N])")
@@ -160,8 +176,6 @@ def menu():
             else:
                 print("INVALID ENTRY DETECTED, EXITING PROGRAM")
                 run = 0
-
-
 
 
         elif (choice == "E"): #INPUTTING ENGLISH OUTPUTTING MORSE
@@ -246,6 +260,8 @@ def menu():
 
         elif (choice == "X"):
             print("EXITING PROGRAM")
+            radio.say("Goodbye")
+            radio.runAndWait()
             quit()
 
         else:
@@ -259,7 +275,16 @@ def menu():
 #msg = "HELLO THERE!"
 #mmsg = ".... . .-.. .-.. ---   - .... . .-. ."
 
+
+#Fun Little Welcome Message
 ps(dot)
 ps(dash)
+
+#Initialize TextToSpeech
+radio = pyttsx3.init()
+radio.setProperty('rate',150)
+
+radio.say("Welcome to Pi Dot Dash")
+radio.runAndWait()
 menu()
 
