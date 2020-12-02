@@ -15,3 +15,4 @@ In addition to the above methods of I/O, I am planning to add the following too!
 | Input | Speech to Text <br> From a File | Physical Button <br> Speech (Beep) to Text ? |
 | Output | | Blinking LED | 
 
+The following PyPI packages _might_ be needed to run this program: [playsound](https://pypi.org/project/playsound/) and [pyttsx3](https://pypi.org/project/pyttsx3/)
