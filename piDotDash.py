@@ -1,3 +1,6 @@
+from playsound import playsound as ps
+import time
+
 alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ']
 
 morse = ['.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..',' ']
@@ -33,6 +36,28 @@ def alphabetToMorse(message):
 
     return translation.lstrip(" ")
 
+#alphabetToMorseBeep takes in an encrypted morse message and beeps it out to the user
+def alphabetToMorseBeep(message):
+    for i in range(len(message)):
+        if (message[i] == "."):
+            ps("dot.mp3")
+        elif (message[i] == "-"):
+            ps("dash.mp3")
+        else:
+            time.sleep(0.2)
+
+#alphabetToMorseBeepSpecial takes in an encrypted morse messsage and both types as well as beeps it out to the user
+def alphabetToMorseBeepSpecial(message):
+    for i in range(len(message)):
+        if (message[i] == "."):
+            print(".", end='', flush=True)
+            ps("dot.mp3")
+        elif (message[i] == "-"):
+            print("-", end='', flush=True)
+            ps("dash.mp3")
+        else:
+            print(" ", end='', flush=True)
+            time.sleep(0.2)
 #printOut displays an alphabet : morse chart to help out users
 def printOut():
     block = ("------------------------")
@@ -77,15 +102,19 @@ def menu():
                 if (inputMethod == "K"):
                         inputValid = 1
 
-            print ("How would you like to output your message?\n")
+            print ("How would you like to output your message?\n") #For multiple options add the sum of numbers a la chmod ;)
             print("1) [C]onsole")
+            print("2) [B]eeps")
             outputMethod = input("").upper()
             outputValid = 0
 
             if (outputMethod == "1"):
                 outputMethod = "C"
+            
+            if (outputMethod == "2"):
+                outputMethod = "B"
 
-            if (outputMethod == "C"):
+            if (outputMethod == "C" or outputMethod == "B"):
                 outputValid= 1
 
             while (outputValid == 0):
@@ -93,8 +122,10 @@ def menu():
                 outputMethod = input("").upper()
                 if (outputMethod == "1"):
                     outputMethod = "C"
+                if (outputMethod == "2"):
+                    ouputMethod = "B"
 
-                if (outputMethod == "C"):
+                if (outputMethod == "C" or outputMethod == "B"):
                     outputValid = 1
 
             if (inputMethod == "K"):
@@ -102,9 +133,13 @@ def menu():
                 morseMessage = input("")
                 englishMessage = morseToAlphabet(morseMessage)
 
-                if (outputMethod == "C"): 
-                    print("Your translated message is: ")
-                    print(englishMessage)
+            if (outputMethod == "C"): 
+                print("Your translated message is: ")
+                print(englishMessage)
+
+            elif (outMethod == "B"):
+                print("Your translated message is: ")
+
 
             print("Would you like to run PiDotDash again? ([Y]/[N])")
             repeat = input("").upper()
@@ -143,15 +178,20 @@ def menu():
                if (inputMethod == "K"):
                    inputValid = 1
 
-            print("How would you like to output your message?\n")
+            print("How would you like to output your message?\n") #For multiple options add the sum of numbers a la chmod ;)
+            print("(To combine options take the sum of their numbers, ie. Console + Beeps = 3)")
             print("1) [C]onsole")
+            print("2) [B]eeps")
             outputMethod = input("").upper()
             outputValid = 0
 
             if (outputMethod == "1"):
                 outputMethod = "C"
 
-            if (outputMethod == "C"):
+            if (outputMethod == "2"):
+                outputMethod = "B"
+
+            if (outputMethod == "C" or outputMethod == "B" or outputMethod == "3"):
                 outputValid = 1
 
             while (outputValid == 0):
@@ -159,8 +199,10 @@ def menu():
                outputMethod = input("").upper()
                if (outputMethod == "1"):
                    outputMethod = "C"
+               if (outputMethod == "2"):
+                   outputMethod = "B"
 
-               if (outputMethod == "C"):
+               if (outputMethod == "C" or outputMethod == "B" or outputMethod == "3"):
                    outputValid = 1
 
             if (inputMethod == "K"):
@@ -168,9 +210,18 @@ def menu():
                 englishMessage = input("")
                 morseMessage = alphabetToMorse(englishMessage)
 
-                if (outputMethod == "C"): 
-                    print("Your translated message is: ")
-                    print(morseMessage)
+            if (outputMethod == "C"): 
+                print("Your translated message is: ")
+                print(morseMessage)
+
+            elif (outputMethod == "B"):
+                print("Your translated message is: ")
+                alphabetToMorseBeep(morseMessage)
+
+            elif (outputMethod == "3"):
+                print("Your translated message is: ")
+                alphabetToMorseBeepSpecial(morseMessage)
+                        
 
             print("Would you like to run PiDotDash again? ([Y]/[N])")
             repeat = input("").upper()
@@ -205,6 +256,7 @@ mmsg = ".... . .-.. .-.. ---   - .... . .-. ."
 #morseToAlphabet(mmsg)
 #print("- - - - - - - - -")
 #alphabetToMorse(msg)
-
+ps('dot.mp3')
+ps('dash.mp3')
 menu()
 
